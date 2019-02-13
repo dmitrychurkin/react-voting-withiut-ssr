@@ -1,6 +1,5 @@
-import { createAction } from 'redux-starter-kit';
 import * as fetchInitialState from '../actionTypes/fetchInitialState';
 
-export const request = createAction(fetchInitialState.REQUEST);
-export const success = createAction(fetchInitialState.SUCCESS);
-export const failure = createAction(fetchInitialState.FAILURE);
+export const request = (isRequestSent= true) => ({ type: fetchInitialState.REQUEST, payload: { isRequestSent } });
+export const success = fetchedData => ({ type: fetchInitialState.SUCCESS, payload: { ...fetchedData } });
+export const failure = err => ({ type: fetchInitialState.FAILURE, payload: { isError: true, error: err } });

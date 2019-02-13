@@ -2,11 +2,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga'
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers';
-import rootSaga from './sagas';
 
 export const isDevelopment = process.env.NODE_ENV !== 'production';
 
-export function configureStore(preloadedState) {
+export function configureStore(initialState) {
 
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [sagaMiddleware];
@@ -14,15 +13,16 @@ export function configureStore(preloadedState) {
 
   const store = createStore(
     rootReducer,
-    preloadedState,
+    initialState,
     isDevelopment ? composeWithDevTools(...enhancers) : compose(...enhancers)
   );
-  
-  sagaMiddleware.run(rootSaga);
 
   if (isDevelopment && module.hot) {
     module.hot.accept('./reducers', () => store.replaceReducer(rootReducer));
   }
 
-  return store;
+  return {
+    ...store,
+    runSaga: sagaMiddleware.run
+  };
 }

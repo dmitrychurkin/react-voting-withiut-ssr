@@ -2,11 +2,23 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { isDevelopment, configureStore } from './configureStore';
+import rootSaga from './sagas';
 import App from './components';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
-const store = configureStore();
+const store = configureStore({ 
+  uuid: null,
+  isAuthenticated: false,
+  isError: false,
+  error: null,
+  isRequestSent: false,
+  emailVerified: false,
+  firstName: null,
+  lastName: null,
+  email: null
+});
+store.runSaga(rootSaga);
 
 const renderApp = () => 
   render(

@@ -3,9 +3,10 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { isDevelopment, configureStore } from './configureStore';
 import rootSaga from './sagas';
-import App from './components';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
+
 
 const store = configureStore({ 
   uuid: null,
@@ -29,7 +30,7 @@ const renderApp = () =>
   );
 
 if (isDevelopment && module.hot) {
-  module.hot.accept('./components', renderApp);
+  module.hot.accept('./components/App', renderApp);
 }
 
 renderApp();

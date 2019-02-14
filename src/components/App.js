@@ -1,28 +1,31 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Router, Route } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+import Account from './Account';
+import Home from './Home';
+import Callback from './Callback';
+import Auth from "../Auth/Auth";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+export const history = createHistory();
+
+const auth = new Auth();
+
+const App = () => {
+
+  return (
+    <Router history={history}>
+      <div>
+        <Route path="/" render={props => <Home auth={auth} {...props} />} />
+        <Route path="/home" render={props => <Account auth={auth} {...props} />} />
+        <Route path="/callback" render={props => {
+          if (/access_token|id_token|error/.test(props.location.hash)) {
+            //auth.handleAuthentication();
+          }
+          return <Callback {...props} /> 
+        }}/>
       </div>
-    );
-  }
+    </Router>
+  );
 }
 
 export default App;

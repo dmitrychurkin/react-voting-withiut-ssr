@@ -22,7 +22,7 @@ const NavBar = ({ auth }) => {
       {
         !isAuthenticated() && (
                   <button
-                    onClick={auth.login()}
+                    onClick={() => auth.login()}
                   >
                     Log In
                   </button>
@@ -31,7 +31,7 @@ const NavBar = ({ auth }) => {
       {
         isAuthenticated() && (
                   <button
-                    onClick={auth.logout()}
+                    onClick={() => auth.logout()}
                   >
                     Log Out
                   </button>

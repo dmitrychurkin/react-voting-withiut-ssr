@@ -6,7 +6,7 @@ const Home = ({ auth }) => {
   return (
     <div>
         <header>
-          {/* <NavBar auth={auth} /> */}
+          <NavBar auth={auth} />
         </header>
       </div>
   );

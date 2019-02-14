@@ -16,7 +16,7 @@ const App = () => {
     <Router history={history}>
       <div>
         <Route path="/" render={props => <Home auth={auth} {...props} />} />
-        <Route path="/home" render={props => <Account auth={auth} {...props} />} />
+        <Route path="/account" render={props => <Account auth={auth} {...props} />} />
         <Route path="/callback" render={props => {
           if (/access_token|id_token|error/.test(props.location.hash)) {
             //auth.handleAuthentication();

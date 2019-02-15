@@ -7,7 +7,7 @@ import Account from '../Account';
 import Home from '../Home';
 import Callback from '../Callback';
 import Auth from "../../Auth/Auth";
-import AppLayout from '../AppLayout';
+import AppLayout from '../../containers/AppLayout';
 
 export const history = createHistory();
 

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { openAppMenu, closeAppMenu } from '../actions';
-import { makeGetAppMenuState } from '../selectors';
-import AppLayout from '../components/AppLayout';
+import { openAppMenu, closeAppMenu } from '../../actions';
+import { makeGetAppMenuState } from '../../selectors';
+import AppLayout from '../../components/AppLayout';
 
 const makeMapStateToProps = () => {
   const getAppMenuState = makeGetAppMenuState();

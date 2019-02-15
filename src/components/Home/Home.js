@@ -1,12 +1,11 @@
 import React from 'react';
-import NavBar from './NavBar';
 
-const Home = ({ auth }) => {
+const Home = () => {
  
   return (
     <div>
         <header>
-          <NavBar auth={auth} />
+          This is a home page
         </header>
       </div>
   );

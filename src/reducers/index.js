@@ -1,14 +1,8 @@
-import * as fetchInitialState from '../actionTypes/fetchInitialState';
+import { combineReducers } from 'redux';
+import fetchInitialState from './fetchInitialState';
+import toggleAppMenu from './toggleAppMenu';
 
-
-export default (state= {}, action) => {
-  switch (action.type) {
-    case fetchInitialState.REQUEST:
-    case fetchInitialState.SUCCESS:
-    case fetchInitialState.FAILURE: {
-      return { ...state, ...action.payload };
-    }
-    default: 
-      return state;
-  }
-};
+export default combineReducers({
+  ui: toggleAppMenu,
+  app: fetchInitialState
+});

@@ -4,16 +4,16 @@ import { history } from '../components/App';
 
 export default class Auth {
 
-  accessToken;
-  idToken;
-  expiresAt;
+  accessToken = null;
+  idToken = null;
+  expiresAt = 0;
 
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
     clientID: AUTH_CONFIG.clientId,
     redirectUri: AUTH_CONFIG.callbackUrl,
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile email'
   });
 
   login = () => {
@@ -25,7 +25,7 @@ export default class Auth {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
-        history.replace('/home');
+        history.replace('/');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -57,8 +57,8 @@ export default class Auth {
     // Remove isLoggedIn flag from localStorage
     localStorage.removeItem('isLoggedIn');
 
-    // navigate to the home route
-    history.replace('/home');
+    // navigate to the / route
+    history.replace('/');
   }
 
   isAuthenticated = () => {
@@ -78,8 +78,8 @@ export default class Auth {
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
 
-    // navigate to the home route
-    history.replace('/home');
+    // navigate to the account route
+    history.replace('/account');
   }
 
 }

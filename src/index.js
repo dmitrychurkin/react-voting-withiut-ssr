@@ -8,17 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import './index.css';
 
 
-const store = configureStore({ 
-  uuid: null,
-  isAuthenticated: false,
-  isError: false,
-  error: null,
-  isRequestSent: false,
-  emailVerified: false,
-  firstName: null,
-  lastName: null,
-  email: null
-});
+const store = configureStore();
 store.runSaga(rootSaga);
 
 const renderApp = () => 

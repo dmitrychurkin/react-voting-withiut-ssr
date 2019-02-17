@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import fetchInitialState from './fetchInitialState';
-import toggleAppMenu from './toggleAppMenu';
+import fetchInitialState from './initialState';
+import ui from './ui';
+import authentication from './authentication';
 
 export default combineReducers({
-  ui: toggleAppMenu,
-  app: fetchInitialState
+  ui,
+  app: fetchInitialState,
+  auth: authentication
 });

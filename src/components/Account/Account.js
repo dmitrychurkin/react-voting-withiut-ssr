@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Account = ({ auth }) => {
+const Account = ({ auth= function() {} }) => {
   const { isAuthenticated } = auth;
   return (
     <div>

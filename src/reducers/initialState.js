@@ -1,4 +1,4 @@
-import * as fetchInitialState from '../actionTypes/fetchInitialState';
+import * as fetchInitialState from '../actionTypes/initialState';
 
 
 export default (state= { 

@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { isDevelopment, configureStore } from './configureStore';
 import rootSaga from './sagas';
-import App from './components/App';
+import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
@@ -20,7 +20,7 @@ const renderApp = () =>
   );
 
 if (isDevelopment && module.hot) {
-  module.hot.accept('./components/App', renderApp);
+  module.hot.accept('./containers/App', renderApp);
 }
 
 renderApp();

@@ -1,4 +1,4 @@
-import * as fetchInitialState from '../actionTypes/fetchInitialState';
+import * as fetchInitialState from '../actionTypes/initialState';
 
 export const request = (isRequestSent= true) => ({ type: fetchInitialState.REQUEST, payload: { isRequestSent } });
 export const success = fetchedData => ({ type: fetchInitialState.SUCCESS, payload: { ...fetchedData } });

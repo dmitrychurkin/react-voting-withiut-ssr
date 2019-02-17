@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Router, Route } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -6,12 +6,12 @@ import createHistory from 'history/createBrowserHistory';
 import Account from '../Account';
 import Home from '../Home';
 import Callback from '../Callback';
-import Auth from "../../Auth/Auth";
 import AppLayout from '../../containers/AppLayout';
+
+// import auth0 from '../../Auth';
 
 export const history = createHistory();
 
-const auth = new Auth();
 
 const theme = createMuiTheme({
   typography: {
@@ -19,18 +19,26 @@ const theme = createMuiTheme({
   }
 });
 
-const App = () => {
+const App = props => {
+
+  console.log('App', props);
+  useEffect(() => {
+    props.checkSession();
+    // auth0.checkSession({}, (err, result) => {
+    //   console.log(err, result);
+    // });
+  });
 
   return (
     <Router history={history}>
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         <AppLayout>
-          <Route path="/" render={props => <Home auth={auth} {...props} />} />
-          <Route path="/account" render={props => <Account auth={auth} {...props} />} />
+          <Route path="/" render={props => <Home {...props} />} />
+          <Route path="/account" render={props => <Account {...props} />} />
           <Route path="/callback" render={props => {
             if (/access_token|id_token|error/.test(props.location.hash)) {
-              auth.handleAuthentication();
+              //auth.handleAuthentication();
             }
             return <Callback {...props} /> 
           }}/>

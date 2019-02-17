@@ -1,8 +1,16 @@
 import auth0 from 'auth0-js';
 import AUTH_CONFIG from './config';
-import { history } from '../components/App';
+// import { history } from '../components/App';
 
-export default class Auth {
+export default new auth0.WebAuth({
+  domain: AUTH_CONFIG.domain,
+  clientID: AUTH_CONFIG.clientId,
+  redirectUri: AUTH_CONFIG.callbackUrl,
+  responseType: 'token id_token',
+  scope: 'openid profile email'
+});
+
+/*export default class Auth {
 
   accessToken = null;
   idToken = null;
@@ -82,4 +90,4 @@ export default class Auth {
     history.replace('/account');
   }
 
-}
+}*/
